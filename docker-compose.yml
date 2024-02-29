@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  # mongodb service
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+
+  #node api service
+  api:
+    build: .
+    ports: 
+      - 3000:3000
+    environment:
+      APP_PORT: 3000
+      MONGODB_URL: mongodb://db_container:27017/test
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}
