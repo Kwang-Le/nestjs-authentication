@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.model';
 import * as bcrypt from 'bcrypt';
@@ -18,5 +18,10 @@ export class UsersController {
             email, hashedPasswords
         )
         return result
+    }
+
+    @Get()
+    HelloWorld(){
+        return "everything fine"
     }
 }
